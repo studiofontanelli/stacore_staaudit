@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>it.csi.stacore</groupId>
+	<artifactId>staaudit</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<name>sta AUDIT</name>
+	<description>Modulo contenitore componente staaudit</description>
+	
+	
+	
+	<modules>
+		<module>staaudit-tar</module>
+		<module>staaudit-ear</module>
+		<module>staaudit-web-rest</module>
+	</modules>
+</project>

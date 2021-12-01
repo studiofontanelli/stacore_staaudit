@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:jms="http://www.springframework.org/schema/jms"
+	   xsi:schemaLocation="
+	   http://www.springframework.org/schema/beans
+	   https://www.springframework.org/schema/beans/spring-beans.xsd
+	   http://www.springframework.org/schema/jms
+	   https://www.springframework.org/schema/jms/spring-jms-4.1.xsd">
+
+
+	
+	<jms:annotation-driven/> 
+	
+	<bean id="jmsListenerContainerFactory" class="org.springframework.jms.config.DefaultJmsListenerContainerFactory">
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="errorHandler" ref="jmsErrorHandler"/>
+	</bean>
+	
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="defaultDestination" ref="testResourceQueue" />   
+	</bean>
+
+
+	<bean id="connectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:/ConnectionFactory" />
+	</bean>
+	 
+	<bean id="testResourceQueue" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:/jms/queue/TestResourceQueue" />
+    </bean>
+    
+    <bean id="auditMessageQueue" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:/jms/queue/AuditMessageQueue" />
+    </bean>
+    
+    <bean id="auditMessageDLQ" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:/jms/queue/AuditMessageDLQ" />
+    </bean>
+    
+    <bean id="jmsErrorHandler" class="it.csi.stacore.staaudit.integration.queue.handler.JmsErrorHandler"/>
+        
+    
+</beans>

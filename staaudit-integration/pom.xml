@@ -52,9 +52,20 @@
 			<version>${springframework.version}</version>
 		</dependency>
 
-		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
 
-		
+		<!-- https://mvnrepository.com/artifact/javax.jms/jms -->
+		<dependency>
+			<groupId>javax.jms</groupId>
+			<artifactId>jms</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -81,7 +92,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		
+
 
 		<dependency>
 			<groupId>postgresql</groupId>
@@ -96,7 +107,7 @@
 			<version>${javax.annotation.version}</version>
 		</dependency>
 
-		
+
 
 	</dependencies>
 

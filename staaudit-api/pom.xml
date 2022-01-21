@@ -232,6 +232,7 @@
 						WEB-INF/lib/commons-logging-*.jar,
 						WEB-INF/lib/servlet-api-*.jar,
 						WEB-INF/lib/maven-*.jar,
+						WEB-INF/lib/aopalliance-*.jar,
 						%regex[WEB-INF/lib/log4j-(?!over-slf4j).*.jar]
 					</packagingExcludes>
 					<webResources>

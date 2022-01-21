@@ -13,34 +13,24 @@
     					http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
 
-	<jee:jndi-lookup id="staauditTxDS" jndi-name="java:/staaudit/jdbc/staauditTxDS" />
-
-
-
-	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	
+	<!-- JPA TRANSACTION MANAGER -->
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
-	<tx:annotation-driven transaction-manager="txManager" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
-    <tx:advice id="txAdvice" transaction-manager="txManager">
+	
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="*" rollback-for="HelperException"/>
 		</tx:attributes>
 	</tx:advice>
 	
-	<!-- 
+	 
 	
-	#hibernate
-hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-hibernate.temp.use_jdbc_metadata_defaults=false
-showSql=false
-generateDdl=false
-database=POSTGRESQL
-hibernate.generate_statistics=false
-	
-	 -->
-
 	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="showSql" value="true" />
 		<property name="generateDdl" value="false" />
@@ -55,10 +45,9 @@ hibernate.generate_statistics=false
 		<property name="packagesToScan">
 			<array>
 				<value>it.csi.stacore.staaudit.integration.entity</value>
+				<value>it.csi.stacore.staaudit.integration.repository</value>
 			</array>
 		</property>
-
-
 
 		<property name="jpaProperties">
 			<props>
@@ -69,8 +58,9 @@ hibernate.generate_statistics=false
 		</property>
 	</bean>
 	
+	
 	<jpa:repositories base-package="it.csi.stacore.staaudit.integration.repository" />
-
+    <jpa:repositories base-package="it.csi.stacore.staaudit.integration.entity" />
 	
 	
 

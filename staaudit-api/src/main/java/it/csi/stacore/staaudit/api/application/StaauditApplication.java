@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import io.swagger.jaxrs.config.BeanConfig;
 import it.csi.stacore.staaudit.api.interceptor.LoggingInterceptor;
 import it.csi.stacore.staaudit.api.provider.ExceptionHandler;
+
 import it.csi.stacore.staaudit.util.ApplicationContextManager;
 import it.csi.stacore.staaudit.util.Constants;
 import it.csi.stacore.staaudit.util.Tracer;

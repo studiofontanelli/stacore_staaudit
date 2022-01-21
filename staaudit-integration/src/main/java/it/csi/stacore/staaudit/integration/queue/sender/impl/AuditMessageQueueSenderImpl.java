@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.jms.JMSException;
 import javax.jms.Message;
 
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class AuditMessageQueueSenderImpl implements AuditMessageQueueSender {
 			jmsTemplate.convertAndSend(QUEUE, message);
 			
 			Tracer.info(LOG, getClass().getName(), method, "message sent correctly");
-
+			HibernateException c;
 		}
 		catch(Exception e) {
 			Tracer.error(LOG, getClass().getName(), method, "Exception " + e);

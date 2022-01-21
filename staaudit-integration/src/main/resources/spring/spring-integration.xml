@@ -6,19 +6,16 @@
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
 
-	<context:component-scan
-		base-package="it.csi.stacore.staaudit.integration" />
+	<context:component-scan base-package="it.csi.stacore.staaudit.integration" />
 
 	<!-- Process annotations on registered beans like @Autowired... -->
 	<context:annotation-config />
 	
 	<import resource="classpath:spring/spring-jms.xml"/> 
-	
-	
-
-	<!-- 
 	<import resource="classpath*:spring/spring-datasource.xml" />
-     -->
+	<!-- JPA -->
+	<import resource="classpath:spring/spring-jpa.xml"/> 
+    
      
     <!--  
 	

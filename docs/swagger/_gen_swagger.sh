@@ -5,8 +5,14 @@ source ./_env.sh
 
 
 export YAML_FILE=staaudit-1.0.0-swagger.yaml
-export YAML_FILE_CONFIG=swagger_config_java.json
-export DIR_GEN=../../staaudit-web-rest
+
+# CONFIGURAZIONE RESTEASY
+export YAML_FILE_CONFIG_RESTEASY=swagger_config_resteasy.json
+export DIR_GEN_RESTEASY=../../staaudit-api
+
+# CONFIGURAZIONE SPRING
+export YAML_FILE_CONFIG_SPRING=swagger_config_spring.json
+export DIR_GEN_SPRING=../../staaudit-api-spring
 
 
 #/opt/java/projects/csi/fp/fpabil_fpabilbl/fpabilbl-web/src/main/java
@@ -19,12 +25,36 @@ java -classpath $CLI_JAR_PATH:$CUSTOM_GEN_JAR_PATH $DEBUG_OPTS \
 				io.swagger.codegen.SwaggerCodegen generate \
 				-i $YAML_FILE \
 				-l jaxrs-resteasy-eap-csi \
-				-o $DIR_GEN \
-				--config $YAML_FILE_CONFIG
+				-o $DIR_GEN_RESTEASY \
+				--config $YAML_FILE_CONFIG_RESTEASY
+				
+java -classpath $CLI_JAR_PATH:$CUSTOM_GEN_JAR_PATH $DEBUG_OPTS \
+				io.swagger.codegen.SwaggerCodegen generate \
+				-i $YAML_FILE \
+				-l spring \
+				-o $DIR_GEN_SPRING \
+				--config $YAML_FILE_CONFIG_SPRING
+
+
+
+### GENERATE CLIENT
+java -classpath $CLI_JAR_PATH:$CUSTOM_GEN_JAR_PATH $DEBUG_OPTS \
+				io.swagger.codegen.SwaggerCodegen generate \
+				-i $YAML_FILE \
+				-l java \
+				-o $DIR_GEN_RESTEASY \
+				
+
+
 
 # echo
 # rem pause "#### generazione documentazione html ####"
 
-java -jar $CLI_JAR_PATH generate -l html -i $YAML_FILE -o .
+# java -jar $CLI_JAR_PATH generate -l html -i $YAML_FILE -o .
+
+
+
+
+
 
 

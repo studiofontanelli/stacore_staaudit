@@ -13,10 +13,18 @@
 	<dependencies>
 		<dependency>
 			<groupId>it.csi.stacore</groupId>
-			<artifactId>staaudit-web-rest</artifactId>
+			<artifactId>staaudit-api</artifactId>
 			<version>1.0.0</version>
 			<type>war</type>
 		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>it.csi.stacore</groupId>
+			<artifactId>staaudit-api-spring</artifactId>
+			<version>1.0.0</version>
+			<type>war</type>
+		</dependency>
+		 -->
 	</dependencies>
 
 	<profiles>
@@ -61,13 +69,21 @@
 					<modules>
 						<webModule>
 							<groupId>it.csi.stacore</groupId>
-							<artifactId>staaudit-web-rest</artifactId>
+							<artifactId>staaudit-api</artifactId>
 							<contextRoot>/${context.name}</contextRoot>
-							<bundleFileName>staaudit-web-rest.war</bundleFileName>
+							<bundleFileName>staaudit-api.war</bundleFileName>
 						</webModule>
-
 					</modules>
-
+					<!-- 
+					<modules>
+						<webModule>
+							<groupId>it.csi.stacore</groupId>
+							<artifactId>staaudit-api-spring</artifactId>
+							<contextRoot>/${context.name}-spring</contextRoot>
+							<bundleFileName>staaudit-api-spring.war</bundleFileName>
+						</webModule>
+					</modules>
+ 					 -->
 				</configuration>
 			</plugin>
 

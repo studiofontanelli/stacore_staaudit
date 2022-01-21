@@ -39,33 +39,76 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${springframework.version}</version>
+			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${springframework.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<version>${springframework.version}</version>
+			<scope>provided</scope>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-jms</artifactId>
+			<artifactId>spring-orm</artifactId>
 			<version>${springframework.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>2.1.10.RELEASE</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-spring-data-commons-core-jpa</artifactId> 
+			<version>1.3.0.RELEASE</version> </dependency> -->
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${springframework.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- 
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.6.Final</version>
+		</dependency>
+ 		-->
+		
+
+
+
+
 		<!-- https://mvnrepository.com/artifact/javax.jms/jms -->
+
 		<dependency>
 			<groupId>javax.jms</groupId>
 			<artifactId>jms</artifactId>
 			<version>1.1</version>
+			<scope>provided</scope>
 		</dependency>
-
-
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -105,6 +148,7 @@
 			<groupId>javax.annotation</groupId>
 			<artifactId>javax.annotation-api</artifactId>
 			<version>${javax.annotation.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 

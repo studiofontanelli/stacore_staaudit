@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    					http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+    					http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd
+    					http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+    					http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+
+	<jee:jndi-lookup id="staauditTxDS" jndi-name="java:/staaudit/jdbc/staauditTxDS" />
+
+
+
+	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="*" rollback-for="HelperException"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 
+	
+	#hibernate
+hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+hibernate.temp.use_jdbc_metadata_defaults=false
+showSql=false
+generateDdl=false
+database=POSTGRESQL
+hibernate.generate_statistics=false
+	
+	 -->
+
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="showSql" value="true" />
+		<property name="generateDdl" value="false" />
+		<property name="database" value="POSTGRESQL" />
+		
+	</bean>
+	
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="staauditTxDS" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		
+		<property name="packagesToScan">
+			<array>
+				<value>it.csi.stacore.staaudit.integration.entity</value>
+			</array>
+		</property>
+
+
+
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+				<prop key="hibernate.generate_statistics">false</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<jpa:repositories base-package="it.csi.stacore.staaudit.integration.repository" />
+
+	
+	
+
+	<!-- 
+	<bean id="jpaVendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="showSql" value="${showSql}" />
+		<property name="generateDdl" value="${generateDdl}" />
+		<property name="database" value="${database}" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="conamblDS" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		
+		<property name="packagesToScan">
+			<array>
+				<value>it.csi.conam.conambl.integration.entity</value>
+				<value>it.csi.conam.conambl.integration.doqui.entity</value>
+			</array>
+		</property>
+
+
+
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">${hibernate.temp.use_jdbc_metadata_defaults}</prop>
+				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+			</props>
+		</property>
+	</bean>
+
+
+
+	<jpa:repositories
+		base-package="it.csi.conam.conambl.integration.repositories" />
+
+	<jpa:repositories
+		base-package="it.csi.conam.conambl.integration.doqui.repositories" />
+
+
+	<bean id="jmxExporter"
+		class="org.springframework.jmx.export.MBeanExporter">
+		<property name="beans">
+			<map>
+				<entry key="Hibernate:application=Statistics"
+					value-ref="hibernateStatisticsBean" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="hibernateStatisticsBean"
+		class="org.hibernate.jmx.StatisticsService">
+		<property name="statisticsEnabled" value="true" />
+		<property name="sessionFactory">
+			<util:property-path
+				path="entityManagerFactory.sessionFactory" />
+		</property>
+	</bean>
+	
+	 -->
+
+</beans>

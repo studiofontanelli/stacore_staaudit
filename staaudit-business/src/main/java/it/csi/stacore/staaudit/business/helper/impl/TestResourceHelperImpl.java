@@ -16,11 +16,9 @@ import it.csi.stacore.staaudit.util.Constants;
 import it.csi.stacore.staaudit.util.Tracer;
 
 @Service("testResourceHelper")
-public class TestResourceHelperImpl implements TestResourceHelper {
+public class TestResourceHelperImpl extends CommonHelperImpl implements TestResourceHelper {
 	
-	private static final String LOGGER_PREFIX = Constants.APPLICATION_CODE + ".business";
-	protected final static Logger LOG = LoggerFactory.getLogger(LOGGER_PREFIX);
-
+	
 	
 	@Autowired
 	private TestResourceQueueSender testResourceQueueSender;
@@ -70,5 +68,7 @@ public class TestResourceHelperImpl implements TestResourceHelper {
 		}
 		
 	}
+
+	
 
 }

@@ -180,11 +180,11 @@ font-style: italic;
   </head>
   <body>
   <h1>STAAUDIT</h1>
-    <div class="app-desc">STAAUDIT</div>
+    <div class="app-desc">API componente staaudit</div>
     <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
     <div class="app-desc">Contact Info: <a href="andrea1.fontanelli@consulenti.csi.it">andrea1.fontanelli@consulenti.csi.it</a></div>
     <div class="app-desc">Version: 1.0.0</div>
-    <div class="app-desc">BasePath:/api</div>
+    <div class="app-desc">BasePath:/staaudit/</div>
     <div class="license-info">All rights reserved</div>
     <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
   <h2>Access</h2>
@@ -194,11 +194,64 @@ font-style: italic;
 
   <h3>Table of Contents </h3>
   <div class="method-summary"></div>
+  <h4><a href="#Operation">Operation</a></h4>
+  <ul>
+  <li><a href="#saveOperation"><code><span class="http-method">post</span> /operation/save</code></a></li>
+  </ul>
   <h4><a href="#Test">Test</a></h4>
   <ul>
   <li><a href="#testResources"><code><span class="http-method">get</span> /test/resources</code></a></li>
   </ul>
 
+  <h1><a name="Operation">Operation</a></h1>
+  <div class="method"><a name="saveOperation"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /operation/save</code></pre></div>
+    <div class="method-summary">Save operation (<span class="nickname">saveOperation</span>)</div>
+    <div class="method-notes">Effettua il tracciamento dell'operazione effettuata</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">request <a href="#RequestSalvaOperazione">RequestSalvaOperazione</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">201</h4>
+    OK
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    Errori di validazione
+        <a href="#ErrorDto">ErrorDto</a>
+    <h4 class="field-label">500</h4>
+    Internal server error
+        <a href="#ErrorDto">ErrorDto</a>
+  </div> <!-- method -->
+  <hr/>
   <h1><a name="Test">Test</a></h1>
   <div class="method"><a name="testResources"/>
     <div class="method-path">
@@ -252,6 +305,8 @@ font-style: italic;
     <li><a href="#ErrorDetail"><code>ErrorDetail</code> - </a></li>
     <li><a href="#ErrorDto"><code>ErrorDto</code> - </a></li>
     <li><a href="#GenericResponse"><code>GenericResponse</code> - </a></li>
+    <li><a href="#Operazione"><code>Operazione</code> - </a></li>
+    <li><a href="#RequestSalvaOperazione"><code>RequestSalvaOperazione</code> - </a></li>
   </ol>
 
   <div class="model">
@@ -278,6 +333,26 @@ font-style: italic;
     <div class='model-description'>Risposta di un servizio generico</div>
     <div class="field-items">
       <div class="param">message (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> Contiene il messaggio eventuale del servizio chiamato </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Operazione"><code>Operazione</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>rappresenta l'operazione effettuata</div>
+    <div class="field-items">
+      <div class="param">codice </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> il codice dell'operazione effettuata </div>
+<div class="param">entita (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> l'entità oggetto dell'operazione </div>
+<div class="param">chiave (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> la chiave (primaria/logica) dell'entità per la quale si è effettuata l'operazione. La chiave è obbligatoria se l'entità è presente </div>
+<div class="param">data </div><div class="param-desc"><span class="param-type"><a href="#DateTime">Date</a></span> la data operazione n formato dd/MM/yyyy HH:mm:ss format: date-time</div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RequestSalvaOperazione"><code>RequestSalvaOperazione</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>è la richiesta di salvataggio di un'operazione</div>
+    <div class="field-items">
+      <div class="param">operazione </div><div class="param-desc"><span class="param-type"><a href="#Operazione">Operazione</a></span> l'operazione da salvare </div>
+<div class="param">utente </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> identificativo utente </div>
+<div class="param">ipAddress (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> indiririzzo IP utente collegato </div>
+<div class="param">codiceUnitaInstallazione </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> il codice della UI che effettua la chiamata. Il codice deve essere censito nella base dati della STAAUDIT. N.B. la unità di installazione può non coincidere con la componente </div>
     </div>  <!-- field-items -->
   </div>
   </body>

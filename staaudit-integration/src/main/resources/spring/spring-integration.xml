@@ -11,16 +11,21 @@
 
 	<!-- Process annotations on registered beans like @Autowired... -->
 	<context:annotation-config />
-
-
-
+	
 	<import resource="classpath:spring/spring-jms.xml"/> 
+	
+	
 
-
+	<!-- 
+	<import resource="classpath*:spring/spring-datasource.xml" />
+     -->
+     
+    <!--  
 	
-	
-	
-	
+	 -->
+	<!-- 
+	<import resource="classpath:spring/spring-jpa.xml"/> 
+	 -->
 
 	<!-- DAO MODULE CONFIGURATION MAIN FILE <import resource="classpath:spring/spring-dao.xml" 
 		/> -->

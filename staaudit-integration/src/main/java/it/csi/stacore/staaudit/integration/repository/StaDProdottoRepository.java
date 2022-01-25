@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import it.csi.stacore.staaudit.integration.entity.StaDProdotto;
 
 @Repository
-public interface StaDProdottoRepository extends CrudRepository<StaDProdotto, Long> {
+public interface StaDProdottoRepository extends CrudRepository<StaDProdotto, Integer> {
 	
 
 

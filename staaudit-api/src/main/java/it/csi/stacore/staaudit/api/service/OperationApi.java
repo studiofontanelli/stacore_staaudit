@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.jaxrs.*;
 
 import it.csi.stacore.staaudit.api.dto.ErrorDto;
-import it.csi.stacore.staaudit.api.dto.RequestSalvaOperazione;
+import it.csi.stacore.staaudit.api.dto.Operazione;
 
 import java.util.List;
 import java.util.Map;
@@ -42,5 +42,5 @@ public interface OperationApi  {
         @io.swagger.annotations.ApiResponse(code = 422, message = "Errori di validazione", response = ErrorDto.class),
         
         @io.swagger.annotations.ApiResponse(code = 500, message = "Internal server error", response = ErrorDto.class) })
-    public Response saveOperation(@ApiParam(value = "" ,required=true) RequestSalvaOperazione request,@Context SecurityContext securityContext, @Context HttpHeaders httpHeaders );
+    public Response saveOperation(@ApiParam(value = "" ,required=true) Operazione request,@Context SecurityContext securityContext, @Context HttpHeaders httpHeaders );
 }

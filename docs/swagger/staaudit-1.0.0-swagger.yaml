@@ -52,7 +52,7 @@ paths:
           name: request
           required: true
           schema:
-            $ref: '#/definitions/RequestSalvaOperazione'
+            $ref: '#/definitions/Operazione'
       responses:
         201:
           description: OK
@@ -110,57 +110,42 @@ definitions:
         type: string
         description: la descrizione dell'errore
         example: 'Internal server error, ecc'
-  RequestSalvaOperazione:
+  Operazione:
     type: object
-    description: è la richiesta di salvataggio di un'operazione
+    description: rappresenta l'operazione da salvare
     properties:
-      operazione:
-        type: object
-        description: l'operazione da salvare
-        $ref: '#/definitions/Operazione'
       utente:
         type: string
-        description: identificativo utente
-        example: Il codice fiscale dell'utente
-      ipAddress:
+        description: Identificativo Utente che effettua l'operazione 
+        example: Codice Fiscale Utente 
+      indirizzoIp:
         type: string
-        description: indiririzzo IP utente collegato
+        description: Indirizzo IP dell'utente che effettua l'operazione 
+        example: Codice Fiscale Utente 
+      codiceOperazione:
+        type: string
+        description: il codice dell'operazione effettuata 
+        example: Valori disponibili (LOGIN, LOGOUT, READ, INSERT, UPDATE, DELETE, PRINT)
       codiceUnitaInstallazione:
         type: string
         description: il codice della UI che effettua la chiamata. Il codice deve essere censito nella base dati della STAAUDIT.
           N.B. la unità di installazione può non coincidere con la componente
         example: staonjb, staonjbbch, stadoc, ecc 
-    required:
-      - operazione
-      - utente
-      - codiceUnitaInstallazione
-  Operazione:
-    type: object
-    description: rappresenta l'operazione effettuata
-    properties:
-      codice:
-        type: string
-        description: il codice dell'operazione effettuata 
-        example: Valori disponibili (LOGIN, LOGOUT, READ, INSERT, UPDATE, DELETE, PRINT)
-      entita:
+      oggettoOperazione:
         type: string
         description: l'entità oggetto dell'operazione
         example: 
-      chiave:
+      chiaveOperazione:
         type: string
         description: la chiave (primaria/logica) dell'entità per la quale si è effettuata l'operazione. La chiave è obbligatoria se l'entità è presente 
         example: PK, chiave logica dell'entità 
-      data:
-        type: string
-        format: date-time
-        description: la data operazione n formato dd/MM/yyyy HH:mm:ss 
-        example: 10/01/2022 15:33:00
     required:
-      - codice
-      - data
+      - utente
+      - codiceOperazione
+      - codiceUnitaInstallazione
 # Added by API Auto Mocking Plugin
-host: 127.0.0.1:8080
-basePath: /staaudit/
+host: virtserver.swaggerhub.com
+basePath: /studiofontanelli/staaudit/1.0.0
 schemes:
  - https
  - http

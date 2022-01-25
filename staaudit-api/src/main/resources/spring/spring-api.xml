@@ -15,13 +15,14 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc.xsd
                         http://www.springframework.org/schema/aop
-					    http://www.springframework.org/schema/aop/spring-aop.xsd">
+					    http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 
 	
 	<context:component-scan base-package="it.csi.stacore.staaudit.api" />
-	<context:annotation-config  />
-	<aop:aspectj-autoproxy />
-	<aop:config proxy-target-class="true"/>
+	
+	<!-- Process annotations on registered beans like @Autowired... -->
+	<context:annotation-config />
+	<aop:aspectj-autoproxy proxy-target-class="false"/> 
 
 </beans>

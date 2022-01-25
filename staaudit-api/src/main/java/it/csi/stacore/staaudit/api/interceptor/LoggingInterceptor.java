@@ -18,9 +18,6 @@ import it.csi.stacore.staaudit.util.Constants;
 import it.csi.stacore.staaudit.util.Tracer;
 
 
-
-
-
 @Provider
 @ServerInterceptor
 public class LoggingInterceptor implements PreProcessInterceptor {
@@ -31,12 +28,7 @@ public class LoggingInterceptor implements PreProcessInterceptor {
 
 	public ServerResponse preProcess(HttpRequest request, ResourceMethodInvoker resourceMethod) throws Failure, WebApplicationException {
 		String method = "preProcess";
-		String methodName = resourceMethod.getMethod().getName();
-		//Tracer.debug(LOG, getClass().getName(), methodName, "pathInfo= " + servletRequest.getPathInfo());
 		Tracer.debug(LOG, getClass().getName(), method, "Attempt to invoke \"" + servletRequest.getPathInfo() + "\" from " + servletRequest.getRemoteAddr());
-
-
-
 		return null;
 	}
 

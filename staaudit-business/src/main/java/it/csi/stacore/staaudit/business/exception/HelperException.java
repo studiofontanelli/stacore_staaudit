@@ -2,7 +2,7 @@ package it.csi.stacore.staaudit.business.exception;
 
 import java.util.List;
 
-import it.csi.stacore.staaudit.business.dto.ErrorDetail;
+import it.csi.stacore.staaudit.business.dto.ErrorDetailDto;
 
 
 
@@ -20,13 +20,13 @@ public class HelperException extends RuntimeException {
 	private static final long serialVersionUID = -1924852710233061982L;
 
 
-	protected List<ErrorDetail> errorDetails;
+	protected List<ErrorDetailDto> errorDetails;
 
 	public HelperException() {
 		super();
 	}
 
-	public HelperException(List<ErrorDetail> errorDetails) {
+	public HelperException(List<ErrorDetailDto> errorDetails) {
 		super();
 		this.errorDetails = errorDetails;
 	}
@@ -36,7 +36,7 @@ public class HelperException extends RuntimeException {
 		super(message, cause);
 
 	}
-	public HelperException(String message, Throwable cause, List<ErrorDetail> errorDetails) {
+	public HelperException(String message, Throwable cause, List<ErrorDetailDto> errorDetails) {
 		super(message, cause);
 		this.errorDetails = errorDetails;
 
@@ -46,7 +46,7 @@ public class HelperException extends RuntimeException {
 		super(message);
 
 	}
-	public HelperException(String message, List<ErrorDetail> errorDetails) {
+	public HelperException(String message, List<ErrorDetailDto> errorDetails) {
 		super(message);
 		this.errorDetails = errorDetails;
 	}
@@ -57,11 +57,11 @@ public class HelperException extends RuntimeException {
 
 	}
 
-	public List<ErrorDetail> getErrorDetails() {
+	public List<ErrorDetailDto> getErrorDetails() {
 		return errorDetails;
 	}
 
-	public void setErrorDetails(List<ErrorDetail> errorDetails) {
+	public void setErrorDetails(List<ErrorDetailDto> errorDetails) {
 		this.errorDetails = errorDetails;
 	}
 

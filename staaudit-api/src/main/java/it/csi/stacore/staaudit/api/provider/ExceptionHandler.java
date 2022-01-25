@@ -7,9 +7,13 @@ import javax.ws.rs.ext.Provider;
 import org.jboss.resteasy.spi.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
+import it.csi.stacore.staaudit.api.adapter.ErrorDetailAdapter;
 import it.csi.stacore.staaudit.api.dto.ErrorDto;
+import it.csi.stacore.staaudit.business.exception.NoDataFoundException;
+import it.csi.stacore.staaudit.business.exception.ValidationException;
 import it.csi.stacore.staaudit.util.Constants;
 import it.csi.stacore.staaudit.util.Tracer;
 import it.csi.stacore.staaudit.util.XmlSerializer;
@@ -21,8 +25,9 @@ public class ExceptionHandler implements ExceptionMapper<RuntimeException> {
 
 	private Logger LOG = LoggerFactory.getLogger(Constants.LOGGER_PREFIX);
 
+	@Autowired
+	private ErrorDetailAdapter errorDetailAdapter;
 
-	@Override
 	public Response toResponse(RuntimeException exception) {
 		String method = "toResponse";
 
@@ -33,10 +38,18 @@ public class ExceptionHandler implements ExceptionMapper<RuntimeException> {
 
 		HttpStatus httpStatus = null;
 
-		if(exception instanceof UnauthorizedException) {
+		if(exception instanceof ValidationException) {
+			httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
+			if(((ValidationException)exception).getErrorDetails() != null)
+				e.setErrorDetails(errorDetailAdapter.convertFrom(((ValidationException)exception).getErrorDetails()));
+		}
+		else if(exception instanceof UnauthorizedException) {
 			httpStatus = HttpStatus.UNAUTHORIZED;
 		}
 
+		else if(exception instanceof NoDataFoundException) {
+			httpStatus = HttpStatus.NOT_FOUND;
+		}
 
 		else {
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;

@@ -11,7 +11,7 @@ public class ExceptionDto implements java.io.Serializable {
 	private Integer status;
 	private String code;
 	private String title;
-	private List<ErrorDetail> errorDetails;
+	private List<ErrorDetailDto> errorDetails;
 
 	public ExceptionDto(HttpStatus httpCode, String title) {
 		super();
@@ -20,7 +20,7 @@ public class ExceptionDto implements java.io.Serializable {
 		this.setTitle(title);
 	}
 
-	public ExceptionDto(HttpStatus httpCode, String title, List<ErrorDetail> details) {
+	public ExceptionDto(HttpStatus httpCode, String title, List<ErrorDetailDto> details) {
 		this(httpCode, title);
 		this.setErrorDetails(details);
 	}
@@ -49,11 +49,11 @@ public class ExceptionDto implements java.io.Serializable {
 		this.code = code;
 	}
 
-	public List<ErrorDetail> getErrorDetails() {
+	public List<ErrorDetailDto> getErrorDetails() {
 		return errorDetails;
 	}
 
-	public void setErrorDetails(List<ErrorDetail> errorDetails) {
+	public void setErrorDetails(List<ErrorDetailDto> errorDetails) {
 		this.errorDetails = errorDetails;
 	}
 

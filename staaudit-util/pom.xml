@@ -12,6 +12,7 @@
 	<description>Modulo che contiene classi di utility</description>
 	
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>

@@ -27,25 +27,6 @@ java -classpath $CLI_JAR_PATH:$CUSTOM_GEN_JAR_PATH $DEBUG_OPTS \
 				-l jaxrs-resteasy-eap-csi \
 				-o $DIR_GEN_RESTEASY \
 				--config $YAML_FILE_CONFIG_RESTEASY
-				
-java -classpath $CLI_JAR_PATH:$CUSTOM_GEN_JAR_PATH $DEBUG_OPTS \
-				io.swagger.codegen.SwaggerCodegen generate \
-				-i $YAML_FILE \
-				-l spring \
-				-o $DIR_GEN_SPRING \
-				--config $YAML_FILE_CONFIG_SPRING
-
-
-
-### GENERATE CLIENT
-java -classpath $CLI_JAR_PATH:$CUSTOM_GEN_JAR_PATH $DEBUG_OPTS \
-				io.swagger.codegen.SwaggerCodegen generate \
-				-i $YAML_FILE \
-				-l java \
-				-o $DIR_GEN_RESTEASY \
-				
-
-
 
 # echo
 # rem pause "#### generazione documentazione html ####"

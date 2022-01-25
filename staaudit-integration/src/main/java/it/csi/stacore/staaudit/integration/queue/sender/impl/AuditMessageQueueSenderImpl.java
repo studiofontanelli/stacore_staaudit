@@ -1,17 +1,9 @@
 package it.csi.stacore.staaudit.integration.queue.sender.impl;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.jms.JMSException;
-import javax.jms.Message;
-
-import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessagePostProcessor;
 import org.springframework.stereotype.Repository;
 
 import it.csi.stacore.staaudit.integration.dto.AuditMessage;
@@ -42,12 +34,12 @@ public class AuditMessageQueueSenderImpl implements AuditMessageQueueSender {
 	public void sendMessage(AuditMessage message) {
 		final String method = "sendMessage";
 		try {
-			Tracer.debug(LOG, getClass().getName(), method, "sending message " + message);
+			Tracer.debug(LOG, getClass().getName(), method, "sending message ");
 
 			jmsTemplate.convertAndSend(QUEUE, message);
 			
 			Tracer.info(LOG, getClass().getName(), method, "message sent correctly");
-			HibernateException c;
+			
 		}
 		catch(Exception e) {
 			Tracer.error(LOG, getClass().getName(), method, "Exception " + e);

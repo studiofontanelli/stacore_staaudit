@@ -2,14 +2,14 @@ package it.csi.stacore.staaudit.business.dto;
 
 import java.io.Serializable;
 
-public class ErrorDetail  implements Serializable {
+public class ErrorDetailDto  implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	private String field = null;
 	private String error = null;
 	
-	public ErrorDetail(String field, String error) {
+	public ErrorDetailDto(String field, String error) {
 		this.field = field;
 		this.error = error;
 	}
